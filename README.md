@@ -1,5 +1,5 @@
-# voidhub
-haha funny script kiddies
+# Void Hub
+haha funny script hub for haha funny script kiddies
 
 ## loadstring
 ```lua
