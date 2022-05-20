@@ -12,7 +12,7 @@ local GUI = Mercury:Create{
 
 local PlayerTab = GUI:Tab{
     Name = "Player",
-    Icon = "rbxassetid://1188759635",
+    Icon = "rbxassetid://8569322835",
 }
 
 local GetHumanoid = function(Plr, Char)
