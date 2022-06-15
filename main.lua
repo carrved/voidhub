@@ -1,4 +1,5 @@
 local plr = game:GetService("Players").LocalPlayer
+local power = 5000
 local Character = plr.Character or Player.CharacterAdded:Wait()
 local Humanoid = Character:WaitForChild('Humanoid')
 local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
@@ -9,6 +10,28 @@ local GUI = Mercury:Create{
     Theme = Mercury.Themes.Legacy,
     Link = "https://github.com/deeeity/mercury-lib"
 }
+
+function spin()
+
+        if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+        game.Players.LocalPlayer.Character.Head.CanCollide = false
+        game.Players.LocalPlayer.Character.Torso.CanCollide = false
+        game.Players.LocalPlayer.Character["Left Leg"].CanCollide = false
+        game.Players.LocalPlayer.Character["Right Leg"].CanCollide = false
+        else
+        if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+        game.Players.LocalPlayer.Character.Head.CanCollide = false
+        game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+        game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+        end
+        end
+        wait(.1)
+        local bambam = Instance.new("BodyThrust")
+        bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+        bambam.Force = Vector3.new(power,0,power)
+        bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+end
 
 local PlayerTab = GUI:Tab{
     Name = "Player",
@@ -47,29 +70,11 @@ local JPSlider = PlayerTab:slider({
     end
 end})
 
-local GodBtn = PlayerTab:Button {
-    Name = "God",
-    Description = "Gods the player (BROKEN)",
-    Callback = function()
-        plr.Character.Humanoid.MaxHealth = 9999999999999
-	    plr.Character.Humanoid.Health = 9999999999999
-    end
-}
-
 local SpinBox = PlayerTab:TextBox {
     Name = "Spin",
     Callback = function(text)
-        local Speed = text
-        if (not CEnv[1]) then
-            local Spin = InstanceNew("BodyAngularVelocity");
-            ProtectInstance(Spin);
-            Spin.Parent = GetRoot();
-            Spin.MaxTorque = Vector3New(0, math.huge, 0);
-            Spin.AngularVelocity = Vector3New(0, Speed, 0);
-            CEnv[#CEnv + 1] = Spin
-        else
-            CEnv[1].AngularVelocity = Vector3New(0, Speed, 0);
-        end
+        power = text
+        spin()
     end
 }
 
@@ -77,26 +82,7 @@ local FlingBtn = PlayerTab:Button {
     Name = "Fling",
     Description = "Spins so fast you can fling people. Reset to stop",
     Callback = function()
-        power = 500
-
-        if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-        game.Players.LocalPlayer.Character.Head.CanCollide = false
-        game.Players.LocalPlayer.Character.Torso.CanCollide = false
-        game.Players.LocalPlayer.Character["Left Leg"].CanCollide = false
-        game.Players.LocalPlayer.Character["Right Leg"].CanCollide = false
-        else
-        if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-        game.Players.LocalPlayer.Character.Head.CanCollide = false
-        game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
-        game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
-        end
-        end
-        wait(.1)
-        local bambam = Instance.new("BodyThrust")
-        bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-        bambam.Force = Vector3.new(power,0,power)
-        bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        spin()
     end
 }
 
@@ -132,6 +118,14 @@ local SitBtn = PlayerTab:Button {
     Description = "Sits the player, what else did you think",
     Callback = function() 
         Humanoid.Sit = true
+    end
+}
+
+local ResetBtn = PlayerTab:Button {
+    Name = "Reset",
+    Description = "Resets your character",
+    Callback = function()
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
     end
 }
 
@@ -179,6 +173,44 @@ local FreecamBtn = PlayerTab:Button {
         }
     end
 }
+
+local SpawnBrickBtn = PlayerTab:Button {
+    Name = "Spawn Brick",
+    Description = "Spawns a brick at a random location.",
+    Callback = function() 
+        p=Instance.new("Part",game.Workspace)
+p.Position=Vector3.new(game.Players.whos_ian.Character.HumanoidRootPart.Position)
+game.Debris:AddItem(p, 87624867234876234872364782364782647242876434672784263847267482647828648237462874263) -- Using game.Debris:AddItem(), we remove p in 2 seconds without delaying the script.
+    end
+}
+
+local FlyToggle = PlayerTab:Toggle {
+    Name = "Fly",
+    StartingState = false,
+    Description = "Allows you to fly like a bird!",
+    Callback = function(state)
+    if(state == true) then
+        GUI:Notification{
+	        Title = "Fly",
+	        Text = "Enabled fly",
+	        Duration = 3,
+	        Callback = function() end
+        }
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zaxiify/voidhub/main/fly.lua"))()
+    else
+        return
+    end
+    end
+}
+
+local cum = PlayerTab:slider({Name = "Test (don't slide!!11!) ", Callback = function(v)
+    GUI:Notification {
+        Title = "test gaming",
+        Text = v,
+        Duration = 9234239,
+        Callback = function() end
+    }
+end})
 
 GUI:Credit{ 
 	Name = "whos_ian",
