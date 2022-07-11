@@ -86,11 +86,13 @@ local SpeedSlider = Movement:slider {
 	end
 }
 
-local flyBtn = Movement:Button {
-	Name = "Fly",
-	Description = "Fly to the stars!",
-	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/z4xi/voidhub/main/fly.lua"), true)()
+local jpSlider = Movement:slider {
+	Name = "Jump Power",
+	Default = 50,
+	Min = 50,
+	Max = 1000,
+	Callback = function(v)
+		humanoid.JumpPower = v
 	end
 }
 
