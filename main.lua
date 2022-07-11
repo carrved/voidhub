@@ -20,14 +20,6 @@ local General = GUI:Tab {
 	Icon = "rbxassetid://10162704828"
 }
 
-local gittest1 = General:Button {
-	Name = "GitHub Test",
-	Description = "Test for WSL Git Support.",
-	Callback = function()
-		print("the gaming has been complete")
-	end
-}
-
 local RJBtn = General:Button {
     Name = "Rejoin",
     Description = "Rejoins you to the server you were last in",
@@ -91,6 +83,14 @@ local SpeedSlider = Movement:slider {
 	Max = 500,
 	Callback = function(v)
 		humanoid.WalkSpeed = v
+	end
+}
+
+local flyBtn = Movement:Button {
+	Name = "Fly",
+	Description = "Fly to the stars!",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/z4xi/voidhub/main/fly.lua", true)()
 	end
 }
 
