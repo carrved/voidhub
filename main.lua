@@ -83,7 +83,7 @@ local SpeedSlider = Movement:slider {
 	Max = 500,
 	Callback = function(v)
 		humanoid.WalkSpeed = v
-		if humanoid.died then
+		if humanoid.Health = 0 then
 			wait(3)
 			humanoid.WalkSpeed = v
 		end
