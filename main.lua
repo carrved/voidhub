@@ -83,17 +83,9 @@ local SpeedSlider = Movement:slider {
 	Max = 500,
 	Callback = function(v)
 		humanoid.WalkSpeed = v
-	end
-}
-
-local speedDeathCheck = Movement:Toggle {
-	Name = "Keep on Death",
-	Description = "Keep walkspeed on death.",
-	Callback = function(v)
-		if v == true & SpeedSlider.v !== 16 then
-			if humanoid.died == true then
-				humanoid.WalkSpeed = SpeedSlider.v
-			end
+		if humanoid.died then
+			wait(3)
+			humanoid.WalkSpeed = v
 		end
 	end
 }
