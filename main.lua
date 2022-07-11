@@ -90,7 +90,7 @@ local flyBtn = Movement:Button {
 	Name = "Fly",
 	Description = "Fly to the stars!",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/z4xi/voidhub/main/fly.lua", true)()
+		loadstring(game:HttpGet(("https://raw.githubusercontent.com/z4xi/voidhub/main/fly.lua"), true)()
 	end
 }
 
