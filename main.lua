@@ -1,5 +1,5 @@
-local plr = game:GetService("Players").LocalPlayer
-local char = plr.Character or Player.CharacterAdded:Wait()
+-- local plr = game:GetService("Players").LocalPlayer
+local char = game:GetService("Players").LocalPlayer.Character or Player.CharacterAdded:Wait()
 local humanoid = char:WaitForChild('Humanoid')
 local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
 
