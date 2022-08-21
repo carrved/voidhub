@@ -1,4 +1,4 @@
-# Void Hub
+# Void Hub (DISCONTINUED)
 haha funny script hub for haha funny script kiddies
 
 ## loadstring
